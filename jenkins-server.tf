@@ -48,7 +48,7 @@ resource "null_resource" "name" {
   provisioner "remote-exec" {
     inline = [
       "sudo chmod +x /tmp/jenkins-server-script.sh",
-      "sh /tmp/jenkins-server-script.sh",
+      "sudo sh /tmp/jenkins-server-script.sh",
     ]
   }
 
@@ -58,5 +58,5 @@ resource "null_resource" "name" {
 
 # print the url of the jenkins server
 output "website_url" {
-  value     = join ("", ["http://", aws_instance.myapp-server.public_dns, ":", "8080"])
+  value = join("", ["http://", aws_instance.myapp-server.public_dns, ":", "8080"])
 }
